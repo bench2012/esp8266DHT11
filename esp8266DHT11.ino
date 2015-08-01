@@ -10,9 +10,6 @@
 #include <ESP8266WiFi.h>
 
 // replace with your channel's thingspeak API key, 
-String apiKey = "apikey";
-char ssid[] = "essid";  //  your network SSID (name)
-char pass[] = "password";       // your network password
 
 const char* server = "api.thingspeak.com";
 #define DHTPIN 2 // what pin we're connected to
@@ -49,7 +46,7 @@ void loop() {
   float h = dht.readHumidity();
   float t = dht.readTemperature();
   if (isnan(h) || isnan(t)) {
-    Serial.println("Failed to read from DHT sensor!");
+//    Serial.println("Failed to read from DHT sensor!");
     return;
   }
 
@@ -72,17 +69,19 @@ void loop() {
      client.print(postStr);
           
 
-     Serial.print("Temperature: ");
-     Serial.print(t);
-     Serial.print(" degrees Celcius Humidity: "); 
-     Serial.print(h);
-     Serial.println("% send to Thingspeak");    
+//     Serial.print("Temperature: ");
+//     Serial.print(t);
+//     Serial.print(" degrees Celcius Humidity: "); 
+//     Serial.print(h);
+//     Serial.println("% send to Thingspeak");  
+Serial.println(".");  
   }
   client.stop();
   
-  Serial.println("Waiting...");    
+//  Serial.println("Waiting...");    
   // thingspeak needs minimum 15 sec delay between updates
-  delay(20000);  
+//  delay(20000);
+ESP.deepSleep(300000000, WAKE_RF_DEFAULT);  
 }
 
 
